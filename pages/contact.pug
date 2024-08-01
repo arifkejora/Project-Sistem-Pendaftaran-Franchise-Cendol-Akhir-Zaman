@@ -1,0 +1,61 @@
+DOCTYPE(html)
+html(lang="zh-TW")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  title café website
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/style.css")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+body
+  .wrapper
+    header.navbar
+      .container
+        a(href="./index.html").brand
+          h1 cafe website
+        #popup-nav.nav
+          a(href="./about.html").nav-link 關於
+          a(href="./service.html").nav-link 服務
+          a(href="./reservation.html").nav-link 訂位
+          a(href="./menu.html").nav-link 菜單
+          a(href="./contact.html").nav-link 聯絡
+          //- for RWD
+          a(href="#!").close-btn
+            span
+            span
+        //- for RWD
+        a(href="#popup-nav").nav-toggle
+          span
+          span
+          span
+
+    section.hero.bg-gray
+      .container.flex-col-center
+        .section-intro
+          h2.title 聯絡我們
+          p.para 有任何回饋或問題都歡迎填寫表單，或來信 example@gmail.com 告訴我們。
+        form.feedback-form(action="/feedback" method="post")
+          .inputbox
+            input(type="text" name="name" required)
+            label(for="name") 暱稱
+          .inputbox
+            input(type="email" name="email" required)
+            label(for="email") 電子郵件
+          .inputbox.feedback
+            textarea(type="text" name="feedback" rows="10" required)
+            label(for="feedback") 回饋
+          .inputbox
+            input.reset(type="reset" value="清空")
+            input.submit(type="submit" value="送出" disabled)
+
+    footer
+      .hero
+        .mask-dark
+        .container
+          a(href="#top").brand
+          ul.nav
+            a(href="./index.html").nav-link 回首頁
+      .copyright
+        p Photos from freepik and Unsplash and PNGitem
+        p Copyright 2022. All rights reserved.
+

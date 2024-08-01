@@ -1,0 +1,151 @@
+DOCTYPE(html)
+html(lang="zh-TW")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  title café website
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/style.css")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+body
+  .wrapper
+    header.navbar
+      .container
+        a(href="./index.html").brand
+          h1 cafe website
+        #popup-nav.nav
+          a(href="./about.html").nav-link 關於
+          a(href="./service.html").nav-link 服務
+          a(href="./reservation.html").nav-link 訂位
+          a(href="./menu.html").nav-link 菜單
+          a(href="./contact.html").nav-link 聯絡
+          //- for RWD
+          a(href="#!").close-btn
+            span
+            span
+        //- for RWD
+        a(href="#popup-nav").nav-toggle
+          span
+          span
+          span
+
+    section.hero.bg-gray
+      .container
+        .section-intro
+          h2.title 線上訂位
+        .row
+          .col-lg-6.col-md-12.flex-col-center
+            form.reservation-form(action="/booking" method="post")
+              .inputbox
+                input(type="text" name="name" required)
+                label(for="name") 姓名
+              .inputbox
+                input(type="email" name="email" required)
+                label(for="email") 電子郵件
+              .inputbox
+                input(type="tel" name="phone" required)
+                label(for="phone") 聯絡電話
+              .inputbox
+                select#date-input(name="date" required)
+                  option(selected="selected" disabled="disabled")
+                label(for="date") 日期
+              .inputbox
+                select#time-input(name="time" required)
+                  option(selected="selected" disabled="disabled")
+                  option(value="08:00") 08:00
+                  option(value="09:00") 09:00
+                  option(value="10:00") 10:00
+                  option(value="11:00") 11:00
+                  option(value="12:00") 12:00
+                  option(value="13:00") 13:00
+                  option(value="14:00") 14:00
+                  option(value="15:00") 15:00
+                  option(value="16:00") 16:00
+                  option(value="17:00") 17:00
+                  option(value="18:00") 18:00
+                  option(value="19:00") 19:00
+                  option(value="20:00") 20:00
+                label(for="time") 時間
+              .inputbox
+                input(type="number" name="guests" required)
+                label(for="guests") 人數
+              .inputbox
+                input.reset(type="reset" value="清空")
+                input.submit(type="submit" value="預約訂位")
+
+          .col-lg-6.col-md-12.flex-col-center
+            table.calender
+              tr#calender-header
+                td 時段
+              tr.calender-row
+                td 08:00
+              tr.calender-row
+                td 09:00
+              tr.calender-row
+                td 10:00
+              tr.calender-row
+                td 11:00
+              tr.calender-row
+                td 12:00
+              tr.calender-row
+                td 13:00
+              tr.calender-row
+                td 14:00
+              tr.calender-row
+                td 15:00
+              tr.calender-row
+                td 16:00
+              tr.calender-row
+                td 17:00
+              tr.calender-row
+                td 18:00
+              tr.calender-row
+                td 19:00
+              tr.calender-row
+                td 20:00
+
+            span(style="background-color: pink; padding: 5px 10px; border-radius: 5px") 填色代表該時段已預訂
+
+    footer
+      .hero
+        .mask-dark
+        .container
+          a(href="#top").brand
+          ul.nav
+            a(href="./index.html").nav-link 回首頁
+      .copyright
+        p Photos from freepik and Unsplash and PNGitem
+        p Copyright 2022. All rights reserved.
+
+  script.
+    const today = new Date();
+    const daysOfWeek = ['日', '一', '二', '三', '四', '五', '六'];
+    for (let i = 0; i < 7; i++) {
+      const futureDate = new Date();
+      futureDate.setDate(today.getDate() + i);
+      const month = futureDate.getMonth() + 1;
+      const date = futureDate.getDate();
+      const dayOfWeek = daysOfWeek[futureDate.getDay()];
+      const formattedDate = `${month}/${date}(${dayOfWeek})`;
+
+      $('#date-input').append(`<option value="${dayOfWeek}">${formattedDate}</option>`)
+      $('#calender-header').append(`<td>${formattedDate}</td>`)
+      $('.calender-row').append(`<td class="${dayOfWeek}"></td>`)
+    }
+
+    function coloring(time, day) {
+      $(`td:contains("${time}") ~ td.${day}`).css('background-color', 'pink');
+    }
+
+    coloring('10:00', '日');
+    coloring('15:00', '一');
+    coloring('19:00', '五');
+
+    const form = $('form');
+    form.submit((evt) => {
+      evt.preventDefault();
+      let day = $('#date-input').val();
+      let time = $('#time-input').val();
+      coloring(time, day);
+      form[0].reset();
+    })

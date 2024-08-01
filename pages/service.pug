@@ -1,0 +1,71 @@
+DOCTYPE(html)
+html(lang="zh-TW")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  title café website
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/style.css")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+body
+  .wrapper
+    header.navbar
+      .container
+        a(href="./index.html").brand
+          h1 cafe website
+        #popup-nav.nav
+          a(href="./about.html").nav-link 關於
+          a(href="./service.html").nav-link 服務
+          a(href="./reservation.html").nav-link 訂位
+          a(href="./menu.html").nav-link 菜單
+          a(href="./contact.html").nav-link 聯絡
+          //- for RWD
+          a(href="#!").close-btn
+            span
+            span
+        //- for RWD
+        a(href="#popup-nav").nav-toggle
+          span
+          span
+          span
+
+    section.hero.bg-gray
+      .container.service-container
+        .section-intro
+          h2.title 服務
+        .row
+          .col-lg-6.col-md-12.flex-col-center
+            .image-container.service-item
+              div(style="background-image: url(images/common/service1.png);").image
+          .col-lg-6.col-md-12.flex-col-center
+            .service-info
+              h4 手沖咖啡
+              p.para Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        .row
+          .col-lg-6.col-md-12.flex-col-center
+            .image-container.service-item
+              div(style="background-image: url(images/common/service2.png);").image
+          .col-lg-6.col-md-12.flex-col-center
+            .service-info
+              h4 甜點
+              p.para Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        .row
+          .col-lg-6.col-md-12.flex-col-center
+            .image-container.service-item
+              div(style="background-image: url(images/common/service3.png);").image
+          .col-lg-6.col-md-12.flex-col-center
+            .service-info
+              h4 咖啡豆
+              p.para Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    footer
+      .hero
+        .mask-dark
+        .container
+          a(href="#top").brand
+          ul.nav
+            a(href="./index.html").nav-link 回首頁
+      .copyright
+        p Photos from freepik and Unsplash and PNGitem
+        p Copyright 2022. All rights reserved.
+

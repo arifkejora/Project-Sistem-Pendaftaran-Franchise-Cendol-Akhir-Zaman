@@ -1,0 +1,131 @@
+DOCTYPE(html)
+html(lang="zh-TW")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  title café website
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/style.css")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+body
+  .wrapper
+    header.navbar
+      .container
+        a(href="./index.html").brand
+          h1 cafe website
+        #popup-nav.nav
+          a(href="./about.html").nav-link 關於
+          a(href="./service.html").nav-link 服務
+          a(href="./reservation.html").nav-link 訂位
+          a(href="./menu.html").nav-link 菜單
+          a(href="./contact.html").nav-link 聯絡
+          //- for RWD
+          a(href="#!").close-btn
+            span
+            span
+        //- for RWD
+        a(href="#popup-nav").nav-toggle
+          span
+          span
+          span
+
+    //- 宣告用在 menu 的 mixin
+    mixin MenuItem(name, des, imageUrl)
+      a(href="#!")
+        .menu-item
+          .image-container
+            div(style=`background-image: url(${imageUrl});`).image
+          .preview
+            h5.title #{name}
+            h6.subtitle #{des}
+    //-------------------------
+
+    section.hero.bg-gray
+      .container
+        .section-intro
+          h2.title 餐點一覽
+        .service-tabs
+          .tab#coffee-tab.flex-col-center
+            .image-container
+              div(style="background-image: url(images/common/icon-coffee.png);").image
+            p Coffee
+          .tab#dessert-tab.flex-col-center
+            .image-container
+              div(style="background-image: url(images/common/icon-dessert.png);").image
+            p Dessert
+          .tab#beans-tab.flex-col-center
+            .image-container
+              div(style="background-image: url(images/common/icon-beans.png);").image
+            p Beans
+        .menu-list
+          .row#coffee-list
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Caffè Americano", "咖啡的描述", "images/products/coffee01.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Latte", "咖啡的描述", "images/products/coffee02.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Mocha", "咖啡的描述", "images/products/coffee03.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Espresso", "咖啡的描述", "images/products/coffee04.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Espresso Romano", "咖啡的描述", "images/products/coffee05.jpg")
+          .row#dessert-list
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Macaron", "甜點的描述", "images/products/dessert01.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Cake", "甜點的描述", "images/products/dessert02.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Ice cream", "甜點的描述", "images/products/dessert03.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Brownie", "甜點的描述", "images/products/dessert04.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Donut", "甜點的描述", "images/products/dessert05.jpg")
+          .row#beans-list
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Arabica", "咖啡豆的描述", "images/products/beans01.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Robusta", "咖啡豆的描述", "images/products/beans02.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Liberica", "咖啡豆的描述", "images/products/beans03.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Excelsa", "咖啡豆的描述", "images/products/beans04.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Maragogype", "咖啡豆的描述", "images/products/beans05.jpg")
+
+    footer
+      .hero
+        .mask-dark
+        .container
+          a(href="#top").brand
+          ul.nav
+            a(href="./index.html").nav-link 回首頁
+      .copyright
+        p Photos from freepik and Unsplash and PNGitem
+        p Copyright 2022. All rights reserved.
+
+    script.
+      $('#coffee-tab').addClass('tab--open');
+      $('#dessert-list').hide();
+      $('#beans-list').hide();
+
+      $('.tab').click(function() {
+        $('.tab').removeClass('tab--open');
+        $(this).addClass('tab--open');
+
+        if ($('#coffee-tab').hasClass('tab--open')) {
+          $('#coffee-list').show();
+          $('#dessert-list').hide();
+          $('#beans-list').hide();
+        }
+        if ($('#dessert-tab').hasClass('tab--open')) {
+          $('#coffee-list').hide();
+          $('#dessert-list').show();
+          $('#beans-list').hide();
+        }
+        if (($('#beans-tab').hasClass('tab--open'))) {
+          $('#coffee-list').hide();
+          $('#dessert-list').hide();
+          $('#beans-list').show();
+        }
+      })
+

@@ -1,0 +1,180 @@
+DOCTYPE(html)
+html(lang="zh-TW")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  title café website
+  link(rel="stylesheet", href="css/normalize.css")
+  link(rel="stylesheet", href="css/style.css")
+body
+  .wrapper
+    header.navbar
+      .container
+        a(href="./index.html").brand
+          h1 cafe website
+        #popup-nav.nav
+          a(href="./about.html").nav-link 關於
+          a(href="./service.html").nav-link 服務
+          a(href="./reservation.html").nav-link 訂位
+          a(href="./menu.html").nav-link 菜單
+          a(href="./contact.html").nav-link 聯絡
+          //- for RWD
+          a(href="#!").close-btn
+            span
+            span
+        //- for RWD
+        a(href="#popup-nav").nav-toggle
+          span
+          span
+          span
+
+    section.jumbotron
+      .mask-dark
+      .container
+        div(style="background-image: url(images/common/logo-w.png);").logo-image
+        .btn-container
+          a(href="./reservation.html").btn.btn-primary.btn-large 訂位
+          a(href="./menu.html").btn.btn-secondary.btn-large 菜單
+
+    section#about.hero.bg-white
+      .container
+        .row
+          .col-lg-6.col-md-12
+            .about-preview
+              h3.title 每杯咖啡留著手的餘溫
+              p.para 想要創造一個小角落，讓人們在這裡可以感受到文學與藝術的氛圍，同時品嚐到高品質的咖啡和美味的糕點。我們相信一杯咖啡可以喚起內心最深層的情感，讓人們重新發現生命中美好的事物。<br>在這個喧囂的都市中，我們希望能夠提供一個靜謐的空間，讓每位客人都能在這裡找到心靈的寄託。這是我們經營咖啡廳的初衷，希望與您分享這份生活態度。
+              a(href="./aboutus.html").btn.btn-primary 更多我們的故事
+          .col-lg-6.col-md-12
+            .image-container
+              div(style="background-image: url(images/products/product001.jpg);").image
+
+    section#service.hero.bg-gray
+      .container
+        .section-intro
+          h2.title SERVICES
+          p.para 用手沖咖啡的溫度，喚醒您完美的每一天
+        .row
+          .col-lg-4.col-md-6.col-sm-12
+            .service-item
+              .image-container
+                div(style="background-image: url(images/products/product002.jpg);").image
+              .preview
+                h4.title 手沖咖啡
+                h5.subtitle 現煮的香濃咖啡，優質的咖啡豆
+                p.para 一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。
+                a(href="./service.html").btn.btn-secondary Read more
+          .col-lg-4.col-md-6.col-sm-12
+            .service-item
+              .image-container
+                div(style="background-image: url(images/products/product003.jpg);").image
+              .preview
+                h4.title 甜點
+                h5.subtitle 吃上一口讓心情好上一整天
+                p.para 一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。
+                a(href="./service.html").btn.btn-secondary Read more
+          .col-lg-4.col-md-6.col-sm-12
+            .service-item
+              .image-container
+                div(style="background-image: url(images/products/product004.jpg);").image
+              .preview
+                h4.title 咖啡豆
+                h5.subtitle 尋豆師精選的咖啡豆，也能代客烘豆磨豆
+                p.para 一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。一段中文的敘述文字，說明東西的美味及外觀等等的話。
+                a(href="./service.html").btn.btn-secondary Read more
+
+    section#reservation.hero.reservation
+      .mask-dark
+      .container
+        .section-intro
+          h2.title RESERVATION
+          p.para 線上預訂座位
+        .btn-container
+          a(href="./reservation.html").btn.btn-secondary.btn-large 訂位請點我
+
+    //- 宣告用在 menu 的 mixin
+    mixin MenuItem(name, des, imageUrl)
+      a(href="#!")
+        .menu-item
+          .image-container
+            div(style=`background-image: url(${imageUrl});`).image
+          .preview
+            h5.title #{name}
+            h6.subtitle #{des}
+    //-------------------------
+
+    section#menu.hero.bg-white
+      .container
+        .section-intro
+          h2.title MENU
+          p.para 所有的餐點一覽
+        .menu-list
+          .title-bar
+            h3.title Coffee
+            a(href="./menu.html").btn.btn-secondary.lg-display more
+          .row
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Caffè Americano", "食物的描述", "images/products/coffee01.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Latte", "食物的描述", "images/products/coffee02.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Mocha", "食物的描述", "images/products/coffee03.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Espresso", "食物的描述", "images/products/coffee04.jpg")
+          //- for RWD
+          .btn-container.lg-hidden
+            a(href="./menu.html").btn.btn-secondary.btn-large more
+        .menu-list
+          .title-bar
+            h3.title Dessert
+            a(href="./menu.html").btn.btn-secondary.lg-display more
+          .row
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Macaron", "食物的描述", "images/products/dessert01.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Cake", "食物的描述", "images/products/dessert02.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Ice cream", "食物的描述", "images/products/dessert03.jpg")
+            .col-lg-3.col-md-4.col-sm-6
+              +MenuItem("Brownie", "食物的描述", "images/products/dessert04.jpg")
+          //- for RWD
+          .btn-container.lg-hidden
+            a(href="#!").btn.btn-secondary.btn-large more
+
+    section#contact.hero.bg-gray
+      .container
+        .section-intro
+          h2.title CONTACT
+          p.para 透過任何方式聯繫我們，或是到現場享受一杯好咖啡
+        .row
+          .col-lg-6.col-md-12
+            table.contact-info
+              tr.title
+                td #[span PHONE]
+              tr.info
+                td 0987-878-787
+              tr.title
+                td #[span LOCATION]
+              tr.info
+                td 台北市信義區信義路五段7號
+              tr.title
+                td #[span HOURS]
+              tr.info
+                td 週一至週五 上午8:00至下午8:00
+          .col-lg-6.col-md-12
+            .map-container
+              iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7529383066567!2d121.56378875872191!3d25.03367519999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6e9d93249%3A0xd508f7b3aa02d931!2z5Y-w5YyXMTAx6KeA5pmv5Y-wIFRhaXBlaSAxMDEgb2JzZXJ2YXRvcnk!5e0!3m2!1szh-TW!2stw!4v1667571291919!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade")
+
+    footer
+      .hero
+        .mask-dark
+        .container
+          a(href="#top").brand
+          .nav
+            a(href="#about").nav-link 關於
+            a(href="#service").nav-link 服務
+            a(href="#reservation").nav-link 訂位
+            a(href="#menu").nav-link 菜單
+            a(href="#contact").nav-link 聯絡
+      .copyright
+        p Photos from freepik and Unsplash and PNGitem
+        p Copyright 2022. All rights reserved.
